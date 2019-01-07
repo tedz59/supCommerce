@@ -11,10 +11,8 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class ListProductServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+		throws IOException {
 		List<SupProduct> products = SupProductDao.getAllProducts();
 
 		PrintWriter out = response.getWriter();

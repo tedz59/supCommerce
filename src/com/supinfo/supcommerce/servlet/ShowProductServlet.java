@@ -12,9 +12,8 @@ import java.io.PrintWriter;
 import java.util.Optional;
 
 public class ShowProductServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+		throws IOException {
 		PrintWriter out = response.getWriter();
 		try {
 			Optional<String> idOption = Optional.ofNullable(request.getParameter("id"));

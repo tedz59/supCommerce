@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>InsertSomeProductServlet</servlet-name>
-        <url-pattern>/basicInsert</url-pattern>
+        <url-pattern>/auth/basicInsert</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -34,4 +34,22 @@
         <servlet-name>ShowProductServlet</servlet-name>
         <url-pattern>/showProduct</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.supinfo.supcommerce.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>AuthenticateFilter</filter-name>
+        <filter-class>com.supinfo.supcommerce.filter.AuthenticateFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticateFilter</filter-name>
+        <url-pattern>/auth/*</url-pattern>
+    </filter-mapping>
+
 </web-app>
