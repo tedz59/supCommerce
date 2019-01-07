@@ -20,9 +20,9 @@ public class ListProductServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("My products : ");
 
-		for (SupProduct product : products) {
-			out.println(product.getName() + " - " + product.getContent() + " - " + product.getPrice());
-		}
+		products.stream()
+				.forEach(p -> out.println(p.getName() + " - " + p.getContent() + " - " + p.getPrice()));
+
 	}
 }
 
