@@ -7,4 +7,31 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+
+    <servlet>
+        <servlet-name>InsertSomeProductServlet</servlet-name>
+        <servlet-class>com.supinfo.supcommerce.servlet.InsertSomeProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertSomeProductServlet</servlet-name>
+        <url-pattern>/basicInsert</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListProductServlet</servlet-name>
+        <servlet-class>com.supinfo.supcommerce.servlet.ListProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListProductServlet</servlet-name>
+        <url-pattern>/listProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowProductServlet</servlet-name>
+        <servlet-class>com.supinfo.supcommerce.servlet.ShowProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowProductServlet</servlet-name>
+        <url-pattern>/showProduct</url-pattern>
+    </servlet-mapping>
 </web-app>
