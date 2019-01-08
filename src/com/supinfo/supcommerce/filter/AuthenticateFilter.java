@@ -33,7 +33,7 @@ public class AuthenticateFilter implements Filter {
 			return;
 		}
 
-		httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.html");
+		httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
 	}
 
 	@Override

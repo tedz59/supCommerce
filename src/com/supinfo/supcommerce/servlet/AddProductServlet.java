@@ -3,6 +3,7 @@ package com.supinfo.supcommerce.servlet;
 import com.supinfo.sun.supcommerce.bo.SupProduct;
 import com.supinfo.sun.supcommerce.doa.SupProductDao;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,13 @@ import java.io.IOException;
 
 @WebServlet("/auth/addProduct")
 public class AddProductServlet extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/auth/addProduct.jsp")
+		   .forward(req, resp);
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 

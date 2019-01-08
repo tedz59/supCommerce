@@ -19,7 +19,7 @@ public class DeleteProductServlet extends HttpServlet {
 
 		idOption.ifPresent(id -> deleteProduct(id));
 
-		resp.sendRedirect(req.getContextPath() + "/listProduct.jsp");
+		resp.sendRedirect(req.getContextPath() + "/listProduct");
 	}
 
 	private void deleteProduct(String id) {
