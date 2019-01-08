@@ -34,7 +34,7 @@ public class AddProductServlet extends HttpServlet {
 
 		SupProductDao.addProduct(product);
 
-		response.sendRedirect(request.getContextPath() + "/showProduct.jsp?id=" + product.getId());
+		response.sendRedirect(request.getContextPath() + "/showProduct?id=" + product.getId());
 	}
 
 }

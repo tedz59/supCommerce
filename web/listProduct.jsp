@@ -1,7 +1,5 @@
-<%@page import="com.supinfo.sun.supcommerce.doa.SupProductDao" %>
-<%@page import="com.supinfo.sun.supcommerce.bo.SupProduct" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,16 +10,24 @@
 <%@ include file="/templates/header.jsp" %>
 <h1>Product list</h1>
 
-<ul>
-    <% for (SupProduct product : SupProductDao.getAllProducts()) { %>
-    <li>
-        <h2><%= product.getName() %></h2>
-        <%= product.getContent() %> - <%= product.getPrice() %> euros
-        <a href="showProduct.jsp?id=<%= product.getId() %>">show details</a>
-        <a href="<%=request.getContextPath()%>/auth/deleteProduct?id=<%= product.getId() %>">Delete</a>
-    </li>
-    <% } %>
-</ul>
+<c:forEach items="${products}" var="product">
+    <c:url var="showDetailUrl" value="showProduct">
+        <c:param name="id" value="${product.id}"/>
+    </c:url>
+    <c:url var="deleteProductUrl" value="/auth/deleteProduct">
+        <c:param name="id" value="${product.id}"/>
+    </c:url>
+    <ul>
+        <li>
+            <h2>${product.name}</h2>
+                ${product.content} - ${product.price} euros
+            <a href="${showDetailUrl}">show details</a>
+            <c:if test="${not empty sessionScope.get('username')}">
+                <a href="${deleteProductUrl}">Delete</a>
+            </c:if>
+        </li>
+    </ul>
+</c:forEach>
 
 <%@ include file="/templates/footer.jsp" %>
 </body>

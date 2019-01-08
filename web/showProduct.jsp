@@ -1,8 +1,4 @@
-<%@page import="com.supinfo.sun.supcommerce.doa.SupProductDao" %>
-<%@page import="com.supinfo.sun.supcommerce.bo.SupProduct" %>
-<%@page import="com.supinfo.sun.supcommerce.exception.UnknownProductException" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,24 +7,13 @@
 </head>
 <body>
 <%@ include file="/templates/header.jsp" %>
-<% try {
-    long id = Long.parseLong(request.getParameter("id"));
-    SupProduct product = SupProductDao.findProductById(id); %>
 <h1>
-    <%= product.getName() %>
+    ${product.name}
 </h1>
-
 <p>
-    <%= product.getContent() %> <br/>
-    <%= product.getPrice() %>
+    ${product.content} <br/>
+    ${product.price}
 </p>
-<%
-} catch (UnknownProductException e) { %>
-Product not found
-<%
-} catch (NumberFormatException e) { %>
-Format number exception
-<% } %>
 <%@ include file="/templates/footer.jsp" %>
 </body>
 </html>

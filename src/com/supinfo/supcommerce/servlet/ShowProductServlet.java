@@ -1,9 +1,9 @@
 package com.supinfo.supcommerce.servlet;
 
-import com.supinfo.sun.supcommerce.bo.SupProduct;
 import com.supinfo.sun.supcommerce.doa.SupProductDao;
 import com.supinfo.sun.supcommerce.exception.UnknownProductException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,25 +15,23 @@ import java.util.Optional;
 @WebServlet(urlPatterns = "/showProduct")
 public class ShowProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws IOException {
-		PrintWriter out = response.getWriter();
+		throws IOException, ServletException {
 		try {
 			Optional<String> idOption = Optional.ofNullable(request.getParameter("id"));
+			idOption.ifPresent(id -> printProduct(id, request));
+			request.getRequestDispatcher("/showProduct.jsp")
+				   .forward(request, response);
 
-			idOption.ifPresent(id -> printProduct(id, out));
 		} catch (UnknownProductException e) {
-			out.println("Product not found");
+			System.out.println(e.getMessage());
 		} catch (NumberFormatException e) {
-			out.println("Incorrect format");
+			System.out.println(e.getMessage());
 		}
 	}
 
-	private void printProduct(String stringId, PrintWriter out) {
+	private void printProduct(String stringId, HttpServletRequest request) {
 		Long id = Long.valueOf(stringId);
-		SupProduct product = SupProductDao.findProductById(id);
-		out.println("Name : " + product.getName());
-		out.println("Content : " + product.getContent());
-		out.println("Price : " + product.getPrice());
+		request.setAttribute("product", SupProductDao.findProductById(id));
 	}
 
 }
