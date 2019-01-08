@@ -12,15 +12,16 @@
 <%@ include file="/templates/header.jsp" %>
 <h1>Product list</h1>
 
-<% for (SupProduct product : SupProductDao.getAllProducts()) { %>
-<h2><%= product.getName() %>
-</h2>
-<p>
-    <%= product.getContent() %> <br/>
-    <%= product.getPrice() %> euros <br/>
-    <a href="showProduct.jsp?id=<%= product.getId() %>">show details</a>
-</p>
-<% } %>
+<ul>
+    <% for (SupProduct product : SupProductDao.getAllProducts()) { %>
+    <li>
+        <h2><%= product.getName() %></h2>
+        <%= product.getContent() %> - <%= product.getPrice() %> euros
+        <a href="showProduct.jsp?id=<%= product.getId() %>">show details</a>
+        <a href="<%=request.getContextPath()%>/auth/deleteProduct?id=<%= product.getId() %>">Delete</a>
+    </li>
+    <% } %>
+</ul>
 
 <%@ include file="/templates/footer.jsp" %>
 </body>
