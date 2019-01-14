@@ -3,7 +3,9 @@ package com.supinfo.supcommerce.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -14,6 +16,9 @@ public class Category {
 	private Long id;
 
 	private String name;
+
+	@OneToMany(mappedBy = "category")
+	private List<Product> products;
 
 	public Category(String name) {
 		this.name = name;
@@ -33,5 +38,13 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 }
