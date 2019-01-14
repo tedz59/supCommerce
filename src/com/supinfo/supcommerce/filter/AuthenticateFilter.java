@@ -1,7 +1,5 @@
 package com.supinfo.supcommerce.filter;
 
-import org.apache.log4j.BasicConfigurator;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,10 +13,6 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = "/auth/*")
 public class AuthenticateFilter implements Filter {
-
-	static {
-		BasicConfigurator.configure();
-	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
