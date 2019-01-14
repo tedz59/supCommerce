@@ -11,8 +11,9 @@
     ${product.name}
 </h1>
 <p>
-    ${product.content} <br/>
-    ${product.price}
+    Content : ${product.content} <br/>
+    price : ${product.price} <br />
+    Category : ${product.category.name}
 </p>
 <%@ include file="/templates/footer.jsp" %>
 </body>

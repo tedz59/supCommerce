@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/listProduct")
-public class ListProductServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = "/cheaperProducts")
+public class CheaperProductServlet extends HttpServlet {
 	private EntityManagerFactory entityManagerFactory;
 
 	@Override
@@ -23,14 +22,18 @@ public class ListProductServlet extends HttpServlet {
 		entityManagerFactory = Persistence.createEntityManagerFactory("SUPCOMMERCE-PU");
 	}
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-		throws IOException, ServletException {
-
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		TypedQuery<Product> query = entityManager.createQuery("SELECT p FROM Product AS p", Product.class);
-		request.setAttribute("products", query.getResultList());
-		request.getRequestDispatcher("/listProduct.jsp")
-			   .forward(request, response);
+
+		TypedQuery<Product> query = entityManager.createQuery("SELECT p FROM Product AS p WHERE p.price < 100", Product.class);
+
+		req.setAttribute("products", query.getResultList());
+
+		req.getRequestDispatcher("/listProduct.jsp")
+		   .forward(req, resp);
+
+		entityManager.close();
 	}
 
 	@Override
@@ -38,5 +41,3 @@ public class ListProductServlet extends HttpServlet {
 		entityManagerFactory.close();
 	}
 }
-
-

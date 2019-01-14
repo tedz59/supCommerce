@@ -25,7 +25,7 @@ public class AddCategoryServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/addCategory.jsp")
+		req.getRequestDispatcher("/auth/addCategory.jsp")
 		   .forward(req, resp);
 	}
 
@@ -52,5 +52,10 @@ public class AddCategoryServlet extends HttpServlet {
 
 		resp.sendRedirect(req.getContextPath() + "/");
 
+	}
+
+	@Override
+	public void destroy() {
+		entityManagerFactory.close();
 	}
 }
