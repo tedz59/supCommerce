@@ -6,8 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@XmlRootElement
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
@@ -58,6 +61,7 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
+	@XmlElement
 	public Category getCategory() {
 		return category;
 	}

@@ -33,4 +33,11 @@ public interface CategoryDao {
 	 */
 	Category create(Category category);
 
+	/**
+	 * Permet de mettre a jour une category.
+	 *
+	 * @param categoryToUpdate
+	 * 	à mettre a jour.
+	 */
+	void update(Category categoryToUpdate);
 }

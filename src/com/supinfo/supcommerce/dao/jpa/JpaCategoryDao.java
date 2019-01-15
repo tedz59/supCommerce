@@ -5,6 +5,7 @@ import com.supinfo.supcommerce.entity.Category;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 import static com.supinfo.supcommerce.util.DaoUtils.persistEntityWithTransaction;
@@ -48,5 +49,21 @@ public class JpaCategoryDao implements CategoryDao {
 		persistEntityWithTransaction(category, entityManager);
 
 		return category;
+	}
+
+	@Override
+	public void update(Category categoryToUpdate) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		try {
+			transaction.begin();
+			entityManager.merge(categoryToUpdate);
+			transaction.commit();
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+			entityManager.close();
+		}
 	}
 }
