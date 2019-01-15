@@ -29,15 +29,17 @@ public class ProductResource {
 	public String getAllProductsInXml() {
 		List<Product> products = DaoFactory.createProductDao()
 										   .getAll();
-		String result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><products>";
+		String result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		for (Product product : products) {
-			result = result.concat(
-				"<product><id>" + product.getId() + "</id><name>" + product.getName() + "</name><description>" + product.getContent()
-					+ "</description><price>" + product.getPrice() + "</price></product>");
+			result = result.concat("<products>"
+									   + "<product>"
+									   + "<id>" + product.getId() + "</id>"
+									   + "<name>" + product.getName() + "</name>"
+									   + "<description>" + product.getContent() + "</description>"
+									   + "<price>" + product.getPrice() + "</price>"
+									   + "</product>"
+									   + "</products>");
 		}
-
-		result = result.concat("</products>");
-
 		return result;
 	}
 
@@ -63,8 +65,12 @@ public class ProductResource {
 		Product product = DaoFactory.createProductDao()
 									.findById(productId);
 		String result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		result = result.concat("<product><id>" + product.getId() + "</id><name>" + product.getName() + "</name><description>" + product.getContent()
-								   + "</description><price>" + product.getPrice() + "</price></product>");
+		result = result.concat("<product>"
+								   + "<id>" + product.getId() + "</id>"
+								   + "<name>" + product.getName() + "</name>"
+								   + "<description>" + product.getContent() + "</description>"
+								   + "<price>" + product.getPrice() + "</price>"
+								   + "</product>");
 
 		return result;
 	}
